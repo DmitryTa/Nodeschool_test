@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around; 
+            align-items: center;
+            background: #edeef0;
+        }
+        .form-wrapper {
+            flex: 0 0 280px;
+            max-width: 450px;
+            width: 35%;  
+            min-width: 300px;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+            border: 1px solid lightgray;
+            border-radius: 2px;     
+            background-color: #fff;
+            box-sizing: border-box;
+            color: #666;
+        }
+        .form__input {
+            width: 100%;
+            margin-top: 5px;
+            height: 32px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            outline: none;
+            border: 1px solid #9b9b9b;
+            transition: all 0.1s linear;
+        }
+        .form__input:focus {
+            border: 1px solid #535353;
+            box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.3);
+        }
+        .form__label {
+            width: 100%;
+            flex: 0 1 70px;
+        }
+        .container {
+            flex: 0 1 150px;
+            max-width: 450px;
+            padding: 15px;
+            width: 35%; 
+            min-width: 300px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border: 1px solid lightgray;
+            border-radius: 2px;
+            color: #666; 
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-y: auto;
+        }
+        .container.progress {
+            position: relative;
+        }
+        .container.progress:after {
+            content: "Подождите, выполняется запрос";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: block;
+            height: 20px;
+            margin: auto;
+            text-align: center; 
+        }
+        .form__btn {
+            margin-top: 20px;
+            min-width: 270px;
+            max-width: 370px;
+            width: 35%;
+            height: 35px;
+        }
+        .error {
+            border: 1px solid red;
+        }
+        .success {
+            border: 1px solid green;
+        }
+        .progress {
+            animation: progress 1s linear infinite alternate-reverse;
+        }
+
+        @keyframes progress {
+            0% {
+                border: 1px solid lightgray;
+            }
+            100% {
+                border: 1px solid grey;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">             
+        <form id="myForm" action="./progress.json" method="GET" class="form">
+            <label class="form__label">
+                ФИО 
+                <input type="text" name="fio" class="form__input">
+            </label>
+            <label class="form__label">
+                Email
+                <input type="text" name="email" class="form__input">
+            </label>
+            <label class="form__label">
+                Телефон
+                <input type="text" name="phone" class="form__input">
+            </label>
+            <button type="submit" id="submitButton" class="form__btn">Отправить</button>
+        </form>
+    </div>
+    <div id="resultContainer" class="container"></div>
+    <script src="index.js"></script>
+</body>
+</html>
